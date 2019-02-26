@@ -1,25 +1,58 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      toggle: false,
+      navHeight: 0
+    }
+  }
+ 
+ 
+  toggleNav = () => {
+    this.setState({
+      navHeight: !this.state.navHeight ? 240 : 0
+    })
+  }
+
+  
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <nav className="navbar">
+          <h1>Start Bootstrap</h1>
+          <div>
+            <span className='menuBurger' onClick={this.toggleNav}>MENU &#9776;</span>
+            <div className={this.state.toggle ? "bigList nav-height" : "bigList" } >
+          <ul>
+              <li><a href="#/">SERVICES</a></li>
+              <li><a href="#/">PORTFOLIO</a></li>
+              <li><a href="#/">ABOUT</a></li>
+              <li><a href="#/">TEAM</a></li>
+              <li><a href="#/">CONTACT</a></li>
+          </ul>
+        </div>
+          </div>
+        </nav>
+        <div className="menuList" 
+        style={{height: this.state.navHeight}}
+        >
+          <ul>
+              <li><a href="#/">SERVICES</a></li>
+              <li><a href="#/">PORTFOLIO</a></li>
+              <li><a href="#/">ABOUT</a></li>
+              <li><a href="#/">TEAM</a></li>
+              <li><a href="#/">CONTACT</a></li>
+          </ul>
+        </div>
+        <div className="main">
+          <h3><em>Welcome To Our Studio!</em></h3>
+          <h1>IT'S NICE TO MEET YOU</h1>
+          <button>TELL ME MORE</button>
+        </div>
       </div>
     );
   }
